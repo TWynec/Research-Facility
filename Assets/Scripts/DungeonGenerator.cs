@@ -28,13 +28,14 @@ public class DungeonGenerator : MonoBehaviour
         {
             for (int j = 0; j < size.y; j++)
             {
+                // Location = size of room * number of rooms 
                 var newRoom = Instantiate(room, new Vector3(i * offset.x, 0, j * offset.y), Quaternion.identity, transform).GetComponent<RoomBehavior>();
                 newRoom.UpdateRoom(board[Mathf.FloorToInt(i + j * size.x)].status);
             }
         }
     }
 
-    void MazeGenerator()
+void MazeGenerator()
     {
         board = new List<Cell>();
 
@@ -52,13 +53,13 @@ public class DungeonGenerator : MonoBehaviour
 
         int k = 0;
 
-        while (k < 1000)
+        while (k<1000)
         {
             k++;
 
             board[currentCell].visited = true;
 
-            if (currentCell == board.Count - 1)
+            if(currentCell == board.Count - 1)
             {
                 break;
             }
